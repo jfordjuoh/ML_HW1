@@ -81,7 +81,11 @@ ng/mL, the median was 10.828 ng/mL, the average level was 14.726 ng/mL,
 and the maximum level of resistin in this dataset was 82.100 ng/mL. The
 lowest chemokine level (MCP-1) was 45.84 pg/dL, the median was 471.32
 pg/dL, the average level was 534.65 pg/dL, and the maximum chemokine
-level in this dataset was 1698.44 pg/dL.
+level in this dataset was 1698.44 pg/dL. Since the classification labels
+is only two levels (1= controls and 2= breast cnacer patients), the
+minimium = 1, the maximum =2, mean = 1.552, and the median = 2. Since
+the classification labels is mainly used to group the patients, this
+descriptive explaniation of this variable may not be as useful.
 
 ## QUESTION 2
 
