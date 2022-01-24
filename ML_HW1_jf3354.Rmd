@@ -2,7 +2,7 @@
 title: "Machine Learning_hw1_jf3354"
 author: Judy Fordjuoh
 date: January 21, 2022
-output: github_document
+output: html_document
 ---
 
 ```{r, echo=FALSE}
@@ -136,5 +136,7 @@ broom::tidy(linear) %>%
 confint.default(linear, level = 0.95, type = Wald)
 ```
 Age Beta:-0.054
+For every one unit change in the age, the amount of insulin being produced decreases by 0.054. 
 
 Age CI: (-0.156,0.048)
+We are 95% confident that the   of being a breast cancer patient comparing those with a high HOMA level to those with a low HOMA level, lies between -0.063 and 0.611.

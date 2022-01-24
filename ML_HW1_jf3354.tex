@@ -1,0 +1,481 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Machine Learning\_hw1\_jf3354},
+  pdfauthor={Judy Fordjuoh},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Machine Learning\_hw1\_jf3354}
+\author{Judy Fordjuoh}
+\date{January 21, 2022}
+
+\begin{document}
+\maketitle
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.5     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   2.0.1     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\hypertarget{question-1}{%
+\subsection{QUESTION 1}\label{question-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Task: Construct a table providing summaries of the quantitative features of the dataset. Summaries should include the mean, median, minimum value, and maximum value. If you are unable to construct a formatted table within R, you can print raw output, but then comment the output to identify the answer that was requested.}
+
+\NormalTok{bcdata }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"bcdata\_Assignment1.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    janitor}\SpecialCharTok{::}\FunctionTok{clean\_names}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 116 Columns: 10
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## dbl (10): Age, BMI, Glucose, Insulin, HOMA, Leptin, Adiponectin, Resistin, M...
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(bcdata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       age            bmi           glucose          insulin      
+##  Min.   :24.0   Min.   :18.37   Min.   : 60.00   Min.   : 2.432  
+##  1st Qu.:45.0   1st Qu.:22.97   1st Qu.: 85.75   1st Qu.: 4.359  
+##  Median :56.0   Median :27.66   Median : 92.00   Median : 5.925  
+##  Mean   :57.3   Mean   :27.58   Mean   : 97.79   Mean   :10.012  
+##  3rd Qu.:71.0   3rd Qu.:31.24   3rd Qu.:102.00   3rd Qu.:11.189  
+##  Max.   :89.0   Max.   :38.58   Max.   :201.00   Max.   :58.460  
+##       homa             leptin        adiponectin        resistin     
+##  Min.   : 0.4674   Min.   : 4.311   Min.   : 1.656   Min.   : 3.210  
+##  1st Qu.: 0.9180   1st Qu.:12.314   1st Qu.: 5.474   1st Qu.: 6.882  
+##  Median : 1.3809   Median :20.271   Median : 8.353   Median :10.828  
+##  Mean   : 2.6950   Mean   :26.615   Mean   :10.181   Mean   :14.726  
+##  3rd Qu.: 2.8578   3rd Qu.:37.378   3rd Qu.:11.816   3rd Qu.:17.755  
+##  Max.   :25.0503   Max.   :90.280   Max.   :38.040   Max.   :82.100  
+##      mcp_1         classification 
+##  Min.   :  45.84   Min.   :1.000  
+##  1st Qu.: 269.98   1st Qu.:1.000  
+##  Median : 471.32   Median :2.000  
+##  Mean   : 534.65   Mean   :1.552  
+##  3rd Qu.: 700.09   3rd Qu.:2.000  
+##  Max.   :1698.44   Max.   :2.000
+\end{verbatim}
+
+For the age category, the minimum age in the dataset is 24 years, the
+median is 56 years, the average age (mean) is 57.3 years, and the
+maximum age in this data set is 89 years. In the BMI category,the lowest
+BMI in the dataset is 18.37 kg/m2, the median BMI is 27.66 kg/m2, the
+average BMI is 27.58 kg/m2, and the highest BMI in this data set is
+38.58 kg/m2. As for glucose, the lowest glucose level is 60.0 mg/dL, the
+median is 92.00 mg/dL, the average glucose level is 97.79 mg/dL, and the
+maximum glucose level in this dataset is 201.00 mg/dL. The lowest
+insulin level is 2.432 μU/mL, the median is 5.925 μU/mL, the average
+level is 10.012 μU/mL, and the maximum insulin level is 58.460 μU/mL.
+The lowest result from the homeostatic model assessment was 0.4674, the
+median was 1.3809, the mean was 2.6950, and the maxium result in this
+dataset was 25.0503. The lowest level of leptin was 4.311 ng/mL, the
+median was 20.271 ng/mL, the average level was 26.615 ng/mL, and the
+maximum level of leptin in this dataset was 90.280 ng/mL. The lowest
+level of adiponectin was 1.656 μg/mL, the median was 8.353 μg/mL, the
+average level was 10.181 μg/mL, and the maximum level of adiponectin in
+this dataset was 38.040 μg/mL. The lowest level of resistin was 3.210
+ng/mL, the median was 10.828 ng/mL, the average level was 14.726 ng/mL,
+and the maximum level of resistin in this dataset was 82.100 ng/mL. The
+lowest chemokine level (MCP-1) was 45.84 pg/dL, the median was 471.32
+pg/dL, the average level was 534.65 pg/dL, and the maximum chemokine
+level in this dataset was 1698.44 pg/dL. Since the classification labels
+is only two levels (1= controls and 2= breast cnacer patients), the
+minimium = 1, the maximum =2, mean = 1.552, and the median = 2. Since
+the classification labels is mainly used to group the patients, this
+descriptive explaniation of this variable may not be as useful.
+
+\hypertarget{question-2}{%
+\subsection{QUESTION 2}\label{question-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Task: Recode BMI into the WHO{-}defined categories below: Severely underweight {-} BMI less than 16.5kg/m\^{}2, Underweight {-} BMI under 18.5 kg/m\^{}2, Normal weight {-} BMI greater than or equal to 18.5 to 24.9 kg/m\^{}2, Overweight – BMI greater than or equal to 25 to 29.9 kg/m\^{}2, Obesity class I – BMI 30 to 34.9 kg/m\^{}2, Obesity class II – BMI 35 to 39.9 kg/m\^{}2, Obesity class III – BMI greater than or equal to 40 kg/m\^{}2. }
+
+\CommentTok{\#Note to self: there is no severely underweight in this data set}
+ 
+\CommentTok{\#Note to self: regrouping the BMI, referred to DS midterm}
+
+\NormalTok{bcdata }\OtherTok{=}\NormalTok{ bcdata }\SpecialCharTok{\%\textgreater{}\%}  
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{bmi\_category =} \FunctionTok{cut}\NormalTok{(bmi, }\AttributeTok{breaks =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{16.5}\NormalTok{, }\FloatTok{18.5}\NormalTok{, }\FloatTok{24.9}\NormalTok{, }\FloatTok{29.9}\NormalTok{, }\FloatTok{34.9}\NormalTok{, }\FloatTok{39.9}\NormalTok{, }\DecValTok{50}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Severely Underweight"}\NormalTok{,}\StringTok{"Under Weight"}\NormalTok{, }\StringTok{"Normal Weight"}\NormalTok{,}\StringTok{"Overweight"}\NormalTok{,}\StringTok{"Obesity Class  I"}\NormalTok{,}\StringTok{"Obesity Class II"}\NormalTok{, }\StringTok{"Obesity Class III"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}  
+  \FunctionTok{select}\NormalTok{(bmi,bmi\_category, }\FunctionTok{everything}\NormalTok{()) }
+\end{Highlighting}
+\end{Shaded}
+
+After categorizing the individuals to the respective BMI categories, we
+see that there is no study participants in the Severely Underweight and
+the Obesity Class III BMI categories.
+
+\hypertarget{question-3}{%
+\subsection{QUESTION 3}\label{question-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Task: Create a bar chart showing the proportion of breast cancer cases and controls within each BMI category}
+
+\CommentTok{\#Note to self: referred to DS midterm}
+
+\NormalTok{dataclean2 }\OtherTok{=}\NormalTok{ bcdata }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{classification =} \FunctionTok{as.character}\NormalTok{(classification)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{classification =} \FunctionTok{recode}\NormalTok{(classification,}
+                       \StringTok{"1"} \OtherTok{=} \StringTok{"Healthy Controls"}\NormalTok{,}
+                       \StringTok{"2"} \OtherTok{=} \StringTok{"Breast Cancer Patients"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(bmi\_category, classification) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{total =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{proportion =}\NormalTok{ total}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(total)) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the proportion in }
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{percentage =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{proportion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'bmi_category'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bcdata\_graphs }\OtherTok{\textless{}{-}}\NormalTok{ dataclean2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ classification, }\AttributeTok{y =}\NormalTok{ percentage, }\AttributeTok{fill =}\NormalTok{ classification)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_viridis\_d}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{bmi\_category) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Proportion of Breast Cancer Cases and }
+\StringTok{    Controls Within Each BMI Category (in percentage)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Patient Type"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Percentage of Study Participants"}
+\NormalTok{  ) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+
+\NormalTok{bcdata\_graphs}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.9\linewidth]{ML_HW1_jf3354_files/figure-latex/unnamed-chunk-4-1}
+
+We see that in the underweight category, there is only one breast cancer
+patient (100\%) and no healthy controls. For the Normal Weight,
+Overweight, and Obesity Class I categories, the breast cancer patients
+surpass the healthy controls. In the Obesity Class II group, there are
+more healthy controls in comparison to the breast cancer patients. There
+were no participants in the severely underweight and obesity class III
+group, which was reflected in the graphs.
+
+\hypertarget{question-4}{%
+\subsection{QUESTION 4}\label{question-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Construct a logistic regression model using breast cancer classification as the outcome and glucose, HOMA{-}IR, leptin, BMI (continuous) and age as the independent variables. Fill in the beta estimate and 95\% confidence interval associated with a 1{-}unit change in HOMA{-}IR}
+
+\NormalTok{bc }\OtherTok{=}\NormalTok{ bcdata }\SpecialCharTok{\%\textgreater{}\%} 
+\FunctionTok{mutate}\NormalTok{(}\AttributeTok{classification =} \FunctionTok{as.factor}\NormalTok{(classification)) }
+
+\NormalTok{logistic }\OtherTok{=} \FunctionTok{glm}\NormalTok{(classification }\SpecialCharTok{\textasciitilde{}}\NormalTok{ glucose }\SpecialCharTok{+}\NormalTok{ homa }\SpecialCharTok{+}\NormalTok{ leptin }\SpecialCharTok{+}\NormalTok{ bmi }\SpecialCharTok{+}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ bc, }\AttributeTok{family =} \FunctionTok{binomial}\NormalTok{()) }
+\FunctionTok{summary}\NormalTok{(logistic)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = classification ~ glucose + homa + leptin + bmi + 
+##     age, family = binomial(), data = bc)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2944  -0.8901   0.1308   0.8084   2.1371  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -3.626065   2.355177  -1.540 0.123654    
+## glucose      0.081699   0.023526   3.473 0.000515 ***
+## homa         0.273882   0.171976   1.593 0.111259    
+## leptin      -0.008574   0.015783  -0.543 0.586979    
+## bmi         -0.104261   0.056642  -1.841 0.065668 .  
+## age         -0.022881   0.014377  -1.592 0.111496    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 159.57  on 115  degrees of freedom
+## Residual deviance: 120.81  on 110  degrees of freedom
+## AIC: 132.81
+## 
+## Number of Fisher Scoring iterations: 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logistic }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{OR =} \FunctionTok{exp}\NormalTok{(estimate)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(term, }\AttributeTok{log\_OR =}\NormalTok{ estimate, OR, p.value) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\AttributeTok{digits =} \DecValTok{3}\NormalTok{) }\CommentTok{\#The table below summaries the coefficients from the model fit; because logistic model estimates are log odds ratios, we include a step to compute odds ratios as well.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule
+term & log\_OR & OR & p.value \\
+\midrule
+\endhead
+(Intercept) & -3.626 & 0.027 & 0.124 \\
+glucose & 0.082 & 1.085 & 0.001 \\
+homa & 0.274 & 1.315 & 0.111 \\
+leptin & -0.009 & 0.991 & 0.587 \\
+bmi & -0.104 & 0.901 & 0.066 \\
+age & -0.023 & 0.977 & 0.111 \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.default}\NormalTok{(logistic, }\AttributeTok{level =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{type =}\NormalTok{ Wald)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   2.5 %      97.5 %
+## (Intercept) -8.24212634 0.989996709
+## glucose      0.03558953 0.127807931
+## homa        -0.06318447 0.610948865
+## leptin      -0.03950852 0.022360915
+## bmi         -0.21527746 0.006756429
+## age         -0.05105921 0.005297301
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculating the 95\% CI}
+  \CommentTok{\#tidy(conf.int = T)}
+\end{Highlighting}
+\end{Shaded}
+
+HOMA Beta: 0.273882 Interpretation: For every one unit change in the
+homeostatic model assessment, the log odds of being a breast cancer
+patient increases by 0.274.
+
+Interpretation 2: The log odds of being a breast cancer patient with a
+high HOMA level is 0.274 times the log odds of being a breast cancer
+patient with a low HOMA level.
+
+HOMA CI: (-0.063, 0.611) We are 95\% confident that the log odds of
+being a breast cancer patient comparing those with a high HOMA level to
+those with a low HOMA level, lies between -0.063 and 0.611.
+
+\hypertarget{question-5}{%
+\subsection{QUESTION 5}\label{question-5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Construct a linear regression model using insulin as the outcome and BMI (continuous), age, and glucose as the independent variables. Fill in the beta estimate and 95\% confidence interval associated with a 1{-}unit change in age.}
+
+\NormalTok{linear }\OtherTok{=} \FunctionTok{lm}\NormalTok{(insulin }\SpecialCharTok{\textasciitilde{}}\NormalTok{ bmi }\SpecialCharTok{+}\NormalTok{ age }\SpecialCharTok{+}\NormalTok{ glucose, }\AttributeTok{data =}\NormalTok{ bcdata)}
+
+\FunctionTok{summary}\NormalTok{(linear) }\CommentTok{\#this would tell you the call, the residuals, the coefficients, SE, Rsquared and F stat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = insulin ~ bmi + age + glucose, data = bcdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -22.161  -4.359  -2.118   2.124  46.269 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -13.49576    5.85941  -2.303   0.0231 *  
+## bmi           0.14969    0.16382   0.914   0.3628    
+## age          -0.05402    0.05194  -1.040   0.3005    
+## glucose       0.22982    0.03752   6.126 1.37e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 8.731 on 112 degrees of freedom
+## Multiple R-squared:  0.2675, Adjusted R-squared:  0.2479 
+## F-statistic: 13.64 on 3 and 112 DF,  p-value: 1.207e-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{(linear) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{std.error, }\SpecialCharTok{{-}}\NormalTok{statistic) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+term & estimate & p.value \\
+\midrule
+\endhead
+(Intercept) & -13.496 & 0.023 \\
+bmi & 0.150 & 0.363 \\
+age & -0.054 & 0.301 \\
+glucose & 0.230 & 0.000 \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.default}\NormalTok{(linear, }\AttributeTok{level =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{type =}\NormalTok{ Wald)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   2.5 %      97.5 %
+## (Intercept) -24.9799980 -2.01152050
+## bmi          -0.1713873  0.47076792
+## age          -0.1558202  0.04777686
+## glucose       0.1562895  0.30334627
+\end{verbatim}
+
+Age Beta:-0.054 For every one unit change in the age, the amount of
+insulin being produced decreases by 0.054.
+
+Age CI: (-0.156,0.048) We are 95\% confident that the of being a breast
+cancer patient comparing those with a high HOMA level to those with a
+low HOMA level, lies between -0.063 and 0.611.
+
+\end{document}

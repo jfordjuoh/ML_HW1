@@ -291,6 +291,9 @@ confint.default(linear, level = 0.95, type = Wald)
     ## age          -0.1558202  0.04777686
     ## glucose       0.1562895  0.30334627
 
-Age Beta:-0.054
+Age Beta:-0.054 For every one unit change in the age, the amount of
+insulin being produced decreases by 0.054.
 
-Age CI: (-0.156,0.048)
+Age CI: (-0.156,0.048) We are 95% confident that the of being a breast
+cancer patient comparing those with a high HOMA level to those with a
+low HOMA level, lies between -0.063 and 0.611.
