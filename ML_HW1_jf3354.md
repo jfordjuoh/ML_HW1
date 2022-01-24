@@ -156,4 +156,144 @@ wants the number of patients and controls are within each bmi catgory
 
 ## QUESTION 4
 
+``` r
+# Construct a logistic regression model using breast cancer classification as the outcome and glucose, HOMA-IR, leptin, BMI (continuous) and age as the independent variables. Fill in the beta estimate and 95% confidence interval associated with a 1-unit change in HOMA-IR
+
+bc = bcdata %>% 
+mutate(classification = as.factor(classification)) 
+
+logistic = glm(classification ~ glucose + homa + leptin + bmi + age, data = bc, family = binomial()) 
+summary(logistic)
+```
+
+    ## 
+    ## Call:
+    ## glm(formula = classification ~ glucose + homa + leptin + bmi + 
+    ##     age, family = binomial(), data = bc)
+    ## 
+    ## Deviance Residuals: 
+    ##     Min       1Q   Median       3Q      Max  
+    ## -2.2944  -0.8901   0.1308   0.8084   2.1371  
+    ## 
+    ## Coefficients:
+    ##              Estimate Std. Error z value Pr(>|z|)    
+    ## (Intercept) -3.626065   2.355177  -1.540 0.123654    
+    ## glucose      0.081699   0.023526   3.473 0.000515 ***
+    ## homa         0.273882   0.171976   1.593 0.111259    
+    ## leptin      -0.008574   0.015783  -0.543 0.586979    
+    ## bmi         -0.104261   0.056642  -1.841 0.065668 .  
+    ## age         -0.022881   0.014377  -1.592 0.111496    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## (Dispersion parameter for binomial family taken to be 1)
+    ## 
+    ##     Null deviance: 159.57  on 115  degrees of freedom
+    ## Residual deviance: 120.81  on 110  degrees of freedom
+    ## AIC: 132.81
+    ## 
+    ## Number of Fisher Scoring iterations: 6
+
+``` r
+logistic %>% 
+  broom::tidy() %>% 
+  mutate(OR = exp(estimate)) %>%
+  select(term, log_OR = estimate, OR, p.value) %>% 
+  knitr::kable(digits = 3) #The table below summaries the coefficients from the model fit; because logistic model estimates are log odds ratios, we include a step to compute odds ratios as well.
+```
+
+| term        | log\_OR |    OR | p.value |
+|:------------|--------:|------:|--------:|
+| (Intercept) |  -3.626 | 0.027 |   0.124 |
+| glucose     |   0.082 | 1.085 |   0.001 |
+| homa        |   0.274 | 1.315 |   0.111 |
+| leptin      |  -0.009 | 0.991 |   0.587 |
+| bmi         |  -0.104 | 0.901 |   0.066 |
+| age         |  -0.023 | 0.977 |   0.111 |
+
+``` r
+confint.default(logistic, level = 0.95, type = Wald)
+```
+
+    ##                   2.5 %      97.5 %
+    ## (Intercept) -8.24212634 0.989996709
+    ## glucose      0.03558953 0.127807931
+    ## homa        -0.06318447 0.610948865
+    ## leptin      -0.03950852 0.022360915
+    ## bmi         -0.21527746 0.006756429
+    ## age         -0.05105921 0.005297301
+
+``` r
+#calculating the 95% CI
+  #tidy(conf.int = T)
+```
+
+HOMA Beta: 0.273882 Interpretation: For every one unit change in the
+homeostatic model assessment, the log odds of being a breast cancer
+patient increases by 0.274.
+
+Interpretation 2: The log odds of being a breast cancer patient with a
+high HOMA level is 0.274 times the log odds of being a breast cancer
+patient with a low HOMA level.
+
+HOMA CI: (-0.063, 0.611) We are 95% confident that the log odds of being
+a breast cancer patient comparing those with a high HOMA level to those
+with a low HOMA level, lies between -0.063 and 0.611.
+
 ## QUESTION 5
+
+``` r
+#Construct a linear regression model using insulin as the outcome and BMI (continuous), age, and glucose as the independent variables. Fill in the beta estimate and 95% confidence interval associated with a 1-unit change in age.
+
+linear = lm(insulin ~ bmi + age + glucose, data = bcdata)
+
+summary(linear) #this would tell you the call, the residuals, the coefficients, SE, Rsquared and F stat
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = insulin ~ bmi + age + glucose, data = bcdata)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -22.161  -4.359  -2.118   2.124  46.269 
+    ## 
+    ## Coefficients:
+    ##              Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) -13.49576    5.85941  -2.303   0.0231 *  
+    ## bmi           0.14969    0.16382   0.914   0.3628    
+    ## age          -0.05402    0.05194  -1.040   0.3005    
+    ## glucose       0.22982    0.03752   6.126 1.37e-08 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 8.731 on 112 degrees of freedom
+    ## Multiple R-squared:  0.2675, Adjusted R-squared:  0.2479 
+    ## F-statistic: 13.64 on 3 and 112 DF,  p-value: 1.207e-07
+
+``` r
+broom::tidy(linear) %>%
+  select(-std.error, -statistic) %>%
+  knitr::kable(digits = 3)
+```
+
+| term        | estimate | p.value |
+|:------------|---------:|--------:|
+| (Intercept) |  -13.496 |   0.023 |
+| bmi         |    0.150 |   0.363 |
+| age         |   -0.054 |   0.301 |
+| glucose     |    0.230 |   0.000 |
+
+``` r
+confint.default(linear, level = 0.95, type = Wald)
+```
+
+    ##                   2.5 %      97.5 %
+    ## (Intercept) -24.9799980 -2.01152050
+    ## bmi          -0.1713873  0.47076792
+    ## age          -0.1558202  0.04777686
+    ## glucose       0.1562895  0.30334627
+
+Age Beta:-0.054
+
+Age CI: (-0.156,0.048)
