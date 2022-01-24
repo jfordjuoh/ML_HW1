@@ -1,8 +1,7 @@
 ---
 title: "Machine Learning_hw1_jf3354"
-author: Judy Fordjuoh
 date: January 21, 2022
-output: pdf_document
+output: word_document
 ---
 
 ```{r, echo=FALSE}
@@ -140,3 +139,4 @@ For every one unit change in the age, the amount of insulin being produced decre
 
 Age CI: (-0.156,0.048)
 We are 95% confident that the   of being a breast cancer patient comparing those with a high HOMA level to those with a low HOMA level, lies between -0.063 and 0.611.
+
