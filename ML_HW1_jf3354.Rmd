@@ -61,26 +61,26 @@ After categorizing the individuals to the respective BMI categories, we see that
 
 #Note to self: referred to DS midterm
 
-dataclean = bcdata %>% 
+dataclean2 = bcdata %>% 
   mutate(classification = as.character(classification)) %>%
   mutate(classification = recode(classification,
                        "1" = "Healthy Controls",
                        "2" = "Breast Cancer Patients")) %>% 
   group_by(bmi_category, classification) %>%
-  summarize( 
-    total = n()
-    ) 
+  summarize(total = n()) %>%
+  mutate(proportion = total/sum(total)) %>% #the proportion in 
+  mutate(percentage = 100*proportion)
   
-bcdata_graphs <- dataclean %>%
-  ggplot(aes(x = classification, y = total, fill = classification)) +
+bcdata_graphs <- dataclean2 %>%
+  ggplot(aes(x = classification, y = percentage, fill = classification)) +
   geom_bar(stat = "identity") +
   scale_fill_viridis_d() +
   facet_grid(~bmi_category) +
   labs(
     title = "Proportion of Breast Cancer Cases and 
-    Controls Within Each BMI Category",
+    Controls Within Each BMI Category (in percentage)",
     x = "Patient Type",
-    y = "Distribution of Study Participants"
+    y = "Percentage of Study Participants"
   ) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) + theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "bottom")
 
 bcdata_graphs
@@ -88,9 +88,8 @@ bcdata_graphs
 
 ```
 
-We see that in the underweight category, there is only one breast cancer patient and no healthy controls. For the Normal Weight, Overweight, and Obesity Class I categories, the breast cancer patients surpass the healthy controls. In the Obesity Class II group, there are more health controls in comparison to the breast cancer patients. There were no participants in the severly underweight and obesity class III group which was reflected in the graphs.   
+We see that in the underweight category, there is only one breast cancer patient (100%) and no healthy controls. For the Normal Weight, Overweight, and Obesity Class I categories, the breast cancer patients surpass the healthy controls. In the Obesity Class II group, there are more healthy controls in comparison to the breast cancer patients. There were no participants in the severely underweight and obesity class III group, which was reflected in the graphs.   
 
-To Do: make comments on the graph and message professor asking if she wants the number of patients and controls are within each bmi catgory
 
 ## QUESTION 4
 ```{r}
